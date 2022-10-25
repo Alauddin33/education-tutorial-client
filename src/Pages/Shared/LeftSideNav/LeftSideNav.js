@@ -1,9 +1,12 @@
 import React from 'react';
+import { useState } from 'react';
 
 const LeftSideNav = () => {
+    const [courses, setCourses] = useState([]);
+
     return (
         <div>
-            <h2>This is Left side</h2>
+            <h4>All Courses</h4>
         </div>
     );
 };

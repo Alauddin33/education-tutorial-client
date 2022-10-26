@@ -4,7 +4,7 @@ import { AuthContext } from '../contexts/UserContext';
 
 
 const Register = () => {
-    const { createUser, signInWithGoogle } = useContext(AuthContext);
+    const { createUser } = useContext(AuthContext);
 
 
     const handleSubmit = event => {
@@ -26,20 +26,11 @@ const Register = () => {
 
     }
 
-    const handleGoogleSignin = () => {
-        signInWithGoogle()
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-            })
-            .catch(error => {
-                console.log('error', error);
-            })
-    }
+
 
 
     return (
-        <div>
+        <div className='w-50 mx-auto'>
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content flex-col">
                     <div className="text-center lg:text-left">
@@ -51,19 +42,19 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" name='name' placeholder="your name" className="input input-bordered" required />
+                                <input type="text" name='name' placeholder="your name" className="input input-bordered ms-3" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" name='email' placeholder="email" className="input input-bordered" required />
+                                <input type="email" name='email' placeholder="email" className="input input-bordered ms-3" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name='password' placeholder="password" className="input input-bordered" required />
+                                <input type="password" name='password' placeholder="password" className="input input-bordered mx-3" required />
                                 <label className="label">
                                     <Link to='/login' className="label-text-alt link link-hover">Already have an account?</Link>
                                 </label>
@@ -72,7 +63,7 @@ const Register = () => {
                                 <button className="btn btn-primary">Register</button>
                             </div>
                         </form>
-                        <button onClick={handleGoogleSignin} className="btn btn-outline btn-success">Google</button>
+
                     </div>
                 </div>
             </div>

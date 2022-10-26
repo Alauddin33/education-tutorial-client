@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.png';
+import { AuthContext } from '../../../contexts/UserContext';
 
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext);
+    console.log(user);
+
+    const handleSignOut = () => {
+        logOut()
+            .then(() => {
+
+            })
+            .catch(error => {
+                console.error('error', error);
+            })
+    }
+
+
     return (
         <Navbar collapseOnSelect expand="lg" bg="secondary" variant="dark" className='mb-5'>
             <Container >
@@ -20,11 +35,27 @@ const Header = () => {
 
                     </Nav>
                     <Nav>
-                        <Link className='text-decoration-none font-weight-bold text-light pe-4' to='/login'>Login</Link>
-                        <Link className='text-decoration-none font-weight-bold pe-4 text-light' to='/Register'>Register</Link>
+                        {
+                            user?.email ?
+                                <>
+                                    <Link to='/'>
+                                        <button onClick={handleSignOut} className="btn btn-md font-weight-bold text-light pe-4">Log out</button>
+                                    </Link>
+                                    {user?.email && <span className="btn btn-md font-weight-bold text-light pe-4">Welcome, {user.email} </span>}
+                                </>
+                                :
+                                <>
+                                    <Link className='text-decoration-none font-weight-bold text-light pe-4' to='/login'>Login</Link>
+                                    <Link className='text-decoration-none font-weight-bold pe-4 text-light' to='/Register'>Register</Link>
+                                </>
+                        }
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>
+
+
+
         </Navbar>
     );
 };

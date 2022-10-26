@@ -14,7 +14,7 @@ const Courses = () => {
     const courses = useLoaderData();
 
     return (
-        <Container>
+        <Container className='mb-5 '>
             <Row>
                 <Col lg='3'>
                     <LeftSideNav></LeftSideNav>

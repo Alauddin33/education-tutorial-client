@@ -1,17 +1,23 @@
 import React, { useContext } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/UserContext';
 
 
 
 const Login = () => {
-
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState(false);
     const { signIn, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
 
     const navigate = useNavigate();
-
+    const handleFocus = () => {
+        setError('');
+        setSuccess(false);
+    }
 
     const handleSubmit = event => {
+
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
@@ -23,12 +29,14 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
-
                 navigate('/');
+                setSuccess(true);
 
             })
             .catch(error => {
                 console.log('error: ', error);
+                setError(error.message);
+                form.reset();
             })
     }
 
@@ -38,6 +46,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setSuccess(true);
             })
             .catch(error => {
                 console.log('error', error);
@@ -51,6 +60,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setSuccess(true);
             })
             .catch(error => {
                 console.log('error', error);
@@ -66,7 +76,7 @@ const Login = () => {
                         <h1 className="text-5xl font-bold">Please Login now!</h1>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <form onSubmit={handleSubmit} className="card-body">
+                        <form onFocus={handleFocus} onSubmit={handleSubmit} className="card-body">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -85,6 +95,10 @@ const Login = () => {
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
+
+                                {success && <p className='text-success'> successfully Logged In</p>}
+
+                                <p className='text-danger'><small>{error}</small></p>
                             </div>
                             <small>Are you new to this site? <Link to='/register' className="label-text-alt link link-hover">Register Now</Link></small>
                         </form>

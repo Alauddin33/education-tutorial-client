@@ -7,13 +7,9 @@ import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.png';
 import { AuthContext } from '../../../contexts/UserContext';
 
-import Button from 'react-bootstrap/Button';
+
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-
-
-
-
 
 
 const Header = () => {
@@ -79,6 +75,7 @@ const Header = () => {
 
 
         </Navbar>
+
     );
 };
 

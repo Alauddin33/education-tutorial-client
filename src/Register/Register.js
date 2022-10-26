@@ -1,14 +1,23 @@
 import React, { useContext } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/UserContext';
 
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
+    const [error, setError] = useState('')
+    const [success, setSuccess] = useState(false);
 
+    const handleFocus = () => {
+        setSuccess(false);
+        setError('')
+    }
 
     const handleSubmit = event => {
         event.preventDefault();
+
+
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
@@ -19,9 +28,13 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log('registered user', user);
+                setSuccess(true);
+                form.reset();
             })
             .catch(error => {
                 console.error('error ', error);
+                setError(error.message);
+                form.reset();
             })
 
     }
@@ -37,7 +50,7 @@ const Register = () => {
                         <h1 className="text-5xl font-bold">Please Register now!</h1>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <form onSubmit={handleSubmit} className="card-body">
+                        <form onFocus={handleFocus} onSubmit={handleSubmit} className="card-body">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
@@ -59,6 +72,9 @@ const Register = () => {
                                     <Link to='/login' className="label-text-alt link link-hover">Already have an account?</Link>
                                 </label>
                             </div>
+                            {success && <p className='text-success'>User created successfully</p>}
+
+                            <p className='text-danger'><small>{error}</small></p>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Register</button>
                             </div>

@@ -7,8 +7,8 @@ import logo from '../../../assets/logo.png';
 
 const Header = () => {
     return (
-        <Navbar collapseOnSelect expand="lg" bg="secondary" variant="dark">
-            <Container>
+        <Navbar collapseOnSelect expand="lg" bg="secondary" variant="dark" className='mb-5'>
+            <Container >
                 <img src={logo} alt="" />
                 <Navbar.Brand><Link className='text-warning font-weight-bold display-5 text-decoration-none' to='/'>Digitech School</Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />

@@ -8,6 +8,8 @@ import Register from "../../Register/Register";
 import Details from "../../Pages/Details/Details/Details";
 
 import PrivateRoute from "./PrivateRoute";
+import Cards from "../../Pages/Cards/Cards/Cards";
+import Errorpage from "../../Pages/Errorpage/Errorpage";
 
 
 export const routes = createBrowserRouter([
@@ -31,6 +33,13 @@ export const routes = createBrowserRouter([
 
             },
             {
+                path: '/details/:id/cards/:id',
+                element: <PrivateRoute><Cards></Cards></PrivateRoute>,
+                loader: ({ params }) => fetch(
+                    `https://education-tutorial-server.vercel.app/details/${params.id}/cards/${params.id}`
+                )
+            },
+            {
                 path: '/blog',
                 element: <Blog></Blog>
             },
@@ -43,6 +52,9 @@ export const routes = createBrowserRouter([
                 element: <Register></Register>
             }
         ]
+    },
+    {
+        path: '/error',
+        element: <Errorpage></Errorpage>
     }
-
 ])

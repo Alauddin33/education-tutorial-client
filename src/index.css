@@ -13,3 +13,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.corner {
+  position: absolute;
+  top: 90px;
+  right: 80px;
+}
+
+.position {
+  position: absolute;
+  top: 50px;
+  right: 120px;
+}

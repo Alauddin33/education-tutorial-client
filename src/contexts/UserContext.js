@@ -30,7 +30,7 @@ const UserContext = ({ children }) => {
     }
 
     const signInWithGithub = () => {
-
+        setLoading(true);
         return signInWithPopup(auth, githubProvider);
     }
 

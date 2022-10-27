@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Button, Col, Container, Row } from 'react-bootstrap';
@@ -11,13 +11,16 @@ const Details = () => {
     console.log(details);
     return (
         <Container className='mb-5'>
+            <Button className='corner' variant="outline-success">Download</Button>
             <Row>
                 <Col lg='3'>
                     <LeftSideNav></LeftSideNav>
                 </Col>
                 <Col lg='9' className='w-75 mb-5' >
                     <div>
+
                         <h2 className='mb-4 text-success'>{details.name}</h2>
+
                         <Card.Img variant="top" src={details.picture} className='h-50' />
                         <Card.Body>
                             <Card.Title className='my-3 text-primary'>{details.title}</Card.Title>
@@ -33,7 +36,9 @@ const Details = () => {
                             </ListGroup>
                             <Card.Body className='text-center'>
 
-                                <Button className='text-light' variant="danger">Get Premium Access</Button>
+                                <Link to={`/details/${details.id}/cards/${details.id}`}>
+                                    <Button className='text-light' variant="danger">Get Premium Access</Button>
+                                </Link>
 
                             </Card.Body>
                         </div>

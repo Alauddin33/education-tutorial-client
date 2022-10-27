@@ -23,9 +23,10 @@ const Register = () => {
 
         const form = event.target;
         const name = form.name.value;
+        const url = form.url.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, email, password);
+        console.log(name, url, email, password);
 
         createUser(email, password)
             .then(result => {
@@ -33,20 +34,20 @@ const Register = () => {
                 console.log('registered user', user);
                 setSuccess(true);
                 form.reset();
-                updateUserProfile(name);
+                updateUserProfile(name, url);
                 window.location.reload();
             })
             .catch(error => {
                 console.error('error ', error);
                 setError(error.message);
-                form.reset();
+
             })
 
     }
 
-    const updateUserProfile = (name) => {
+    const updateUserProfile = (name, url) => {
         updateProfile(auth.currentUser, {
-            displayName: name, photoURL: "https://k2partnering.com/wp-content/uploads/2016/05/Person.jpg"
+            displayName: name, photoURL: url
         })
             .then(() => {
                 console.log('name and profile updated')
@@ -69,6 +70,12 @@ const Register = () => {
                                     <span className="label-text">Name</span>
                                 </label>
                                 <input type="text" name='name' placeholder="your name" className="input input-bordered ms-3" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Photo Url</span>
+                                </label>
+                                <input type="text" name='url' placeholder="photoURL" className="input input-bordered ms-3" />
                             </div>
                             <div className="form-control">
                                 <label className="label">

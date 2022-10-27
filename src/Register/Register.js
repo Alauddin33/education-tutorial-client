@@ -1,8 +1,11 @@
+import { getAuth, updateProfile } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/UserContext';
+import app from '../firebase/firebase.config';
 
+const auth = getAuth(app);
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
@@ -30,6 +33,8 @@ const Register = () => {
                 console.log('registered user', user);
                 setSuccess(true);
                 form.reset();
+                updateUserProfile(name);
+                window.location.reload();
             })
             .catch(error => {
                 console.error('error ', error);
@@ -39,7 +44,15 @@ const Register = () => {
 
     }
 
-
+    const updateUserProfile = (name) => {
+        updateProfile(auth.currentUser, {
+            displayName: name, photoURL: "https://k2partnering.com/wp-content/uploads/2016/05/Person.jpg"
+        })
+            .then(() => {
+                console.log('name and profile updated')
+            })
+            .then(error => console.error(error))
+    }
 
 
     return (

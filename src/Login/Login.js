@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/UserContext';
 
 
@@ -16,6 +16,10 @@ const Login = () => {
         setSuccess(false);
     }
 
+
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
     const handleSubmit = event => {
 
         event.preventDefault();
@@ -29,7 +33,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
-                navigate('/');
+                navigate(from, { replace: true });
                 setSuccess(true);
 
             })
@@ -89,9 +93,7 @@ const Login = () => {
                                 </label>
                                 <input type="password" name='password' placeholder="password" className="input input-bordered mx-3" required />
 
-                                <label className="label">
-                                    <small><a href="#" className="label-text-alt link link-hover">Forgot password?</a></small>
-                                </label>
+
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>

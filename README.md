@@ -1,4 +1,4 @@
-# My Website Name:  "Digitech School"
+# My Website Name:  "Digitech"
 
 ## Live site Link:
 Website link is given here: [https://education-tutorial-final.web.app/](https://education-tutorial-final.web.app/)

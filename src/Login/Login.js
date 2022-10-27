@@ -51,6 +51,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 setSuccess(true);
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.log('error', error);
@@ -65,6 +66,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 setSuccess(true);
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.log('error', error);

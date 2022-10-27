@@ -1,5 +1,23 @@
 # My Website Name:  "Digitech School"
 
+## Live site Link:
+Website link is given here: [https://education-tutorial-final.web.app/](https://education-tutorial-final.web.app/)
+
+# points which I make
+* 3 types of login system
+* After login photo url show
+* Sliding home page
+* Server side data management
+* Firebase deployment
+
+
+# List of Technology:
+* React js
+* BootStrap
+* vercel
+* express js
+* nodemon
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

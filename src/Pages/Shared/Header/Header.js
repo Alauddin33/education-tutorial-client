@@ -10,6 +10,7 @@ import { AuthContext } from '../../../contexts/UserContext';
 
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { Button } from 'react-bootstrap';
 
 
 const Header = () => {
@@ -35,9 +36,10 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Link className='font-weight-bold text-decoration-none  text-info fs-4 pe-4' to='/courses'>Courses</Link>
-                        <Link className='font-weight-bold text-decoration-none  text-info fs-4 pe-4'>FAQ</Link>
-                        <Link className='font-weight-bold text-decoration-none  text-info fs-4 pe-4' to='/blog'>BLOG</Link>
+                        <Button variant="outline-primary"><Link className='font-weight-bold text-decoration-none  text-info fs-4 pe-4' to='/courses'>Courses</Link></Button>
+                        <Button variant="outline-primary"><Link className='font-weight-bold text-decoration-none  text-info fs-4 pe-4'>FAQ</Link></Button>
+                        <Button variant="outline-primary"><Link className='font-weight-bold text-decoration-none  text-info fs-4 pe-4' to='/blog'>BLOG</Link>
+                        </Button>
 
                     </Nav>
                     <Nav>
